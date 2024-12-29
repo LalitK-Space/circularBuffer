@@ -46,7 +46,7 @@ cBufferStatus_t cBuffer_read_char(cBuffer_t *cBuffer, uint8_t *readChar);
 /*- Adds a string to the circular buffer -*/
 cBufferStatus_t cBuffer_add_string(cBuffer_t *cBuffer, const char *stringData);
 /*- Reads a string from the circular buffer -*/
-cBufferStatus_t cBuffer_read_string(cBuffer_t *cBuffer, uint32_t str_length, uint8_t *DestinationBuffer);
+cBufferStatus_t cBuffer_read_string(cBuffer_t *cBuffer, uint32_t str_length, uint8_t *DestinationBuffer, uint32_t destBufferSize);
 /*- Peeks at an index in the circular buffer -*/
 cBufferStatus_t cBuffer_peek(cBuffer_t const * const cBuffer, uint32_t peekIndex, uint8_t *peekResult);
 /*- Gets the available space in the circular buffer -*/
