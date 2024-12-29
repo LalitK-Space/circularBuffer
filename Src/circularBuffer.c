@@ -169,13 +169,21 @@ cBufferStatus_t cBuffer_peek(cBuffer_t const * const cBuffer, uint32_t peekIndex
  * Parameter 1	:	Pointer to the circular buffer structure.
  * Parameter 2	:	Number of characters to read (string length).
  * Parameter 3  :       Pointer to the destination buffer where the string will be stored.
+ * Parameter 4  :       Size of the destination buffer in bytes (to ensure the buffer can hold the requested string and the null terminator.)
  * Return Type	:	Status of the operation (cBufferStatus_t).
  * Note		:       - The destination buffer (moved string) is null-terminated by the function to ensure string validity.
  *                      - Returns CBUFFER_FAIL if the circular buffer contains fewer than str_length bytes.
  *                      - The function reads and removes the characters from the source circular buffer.
  * ----------------------------------------------------------------------------------------------------- -*/
-cBufferStatus_t cBuffer_read_string(cBuffer_t *cBuffer, uint32_t str_length, uint8_t *DestinationBuffer)
+cBufferStatus_t cBuffer_read_string(cBuffer_t *cBuffer, uint32_t str_length, uint8_t *DestinationBuffer, uint32_t destBufferSize)
 {
+    /* Check if the destination buffer can hold the requested number of characters */
+    if (str_length >= destBufferSize)
+    {
+         /* Ensure the destination buffer can accommodate the string and null terminator */
+        return CBUFFER_FAIL; 
+    }    
+    
     /* Check if source buffer has requested number of bytes */
     uint32_t data_inSourceBuffer = cBuffer_get_usedSpace(cBuffer);
 
