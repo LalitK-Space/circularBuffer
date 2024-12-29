@@ -1,32 +1,37 @@
 #ifndef INC_CIRCULARBUFFER_H_
 #define INC_CIRCULARBUFFER_H_
 
-#include <stdio.h>
+/*
+*   
+* A general-purpose circular buffer library with features optimized for embedded applications.
+* 
+*/
+
 #include <stdint.h>
 #include <string.h>
 
 
-/*- Buffer Size  -*/
+/*- Circular Buffer Size  -*/
 #define C_BUFFER_SIZE   (50)
 
 /*- Circular Buffer Structure  -*/
 typedef struct
 {
-    uint8_t     data[C_BUFFER_SIZE];
-    uint32_t    front;
-    uint32_t    rear;
+    uint8_t     data[C_BUFFER_SIZE];    /* Buffer Array to store data */
+    uint32_t    front;                  /* Front index of the buffer */
+    uint32_t    rear;                   /* Rear index of the buffer */
 
 } cBuffer_t;
 
-/*- Circular Buffer Operation Status Codes  -*/
+/* Status Codes for Circular Buffer Operations */
 typedef enum 
 {
-    CBUFFER_SUCCESS         = 0,
-    CBUFFER_EMPTY           = -1,
-    CBUFFER_FULL            = -2,
-    CBUFFER_OVERFLOW        = -3,
-    CBUFFER_FAIL            = -4,
-    CBUFFER_INVALID_STRING  = -5
+    CBUFFER_SUCCESS         = 0,        /* Operation successfull */
+    CBUFFER_EMPTY           = -1,       /* Buffer is empty */
+    CBUFFER_FULL            = -2,       /* Buffer is full */
+    CBUFFER_OVERFLOW        = -3,       /* Data will overflow the buffer */
+    CBUFFER_FAIL            = -4,       /* Generic operation failure */
+    CBUFFER_INVALID_STRING  = -5        /* Operation successfull */
 
 } cBufferStatus_t;
 
